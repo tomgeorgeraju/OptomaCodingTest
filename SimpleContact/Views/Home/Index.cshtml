@@ -1,0 +1,42 @@
+﻿@model EmailViewModel
+@{
+    ViewData["Title"] = "Home Page - Contact";
+    
+}
+
+<div class="row">
+    <div class="col-12 text-center">
+        <h1 class="display-4">Optoma Pretask</h1>
+        <h5>Please submit the contact form</h5>
+    </div>
+</div>
+<div class="row justify-content-center text-center">
+    <div class="col-8">
+        @if (TempData["UserMessage"] != null)
+        {
+              <div class="alert @TempData["UserMessage"]">
+                <strong style="color:red">@TempData["UserMessage"]</strong>
+            </div>
+        }
+        <form asp-action="Submit" method="post">
+            <div class="form-group mb-2">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" required maxlength="128" asp-for="@Model.Name"
+                       placeholder="Maximum length 128">
+            </div>
+            <div class="form-group mb-2">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" required maxlength="256" asp-for="@Model.Email"
+                       placeholder="Maximum length 256">
+            </div>
+            <div class="form-group mb-2">
+                <label for="message">Mesage</label>
+                <textarea type="text" class="form-control" id="message" required maxlength="2048" asp-for="@Model.Message"
+                          placeholder="Maximum length 2048" ></textarea>
+            </div>
+            <div class="form-group mb-2">
+                <input type="submit" class="btn btn-primary" value="Send">
+            </div>
+        </form>
+    </div>
+</div>
